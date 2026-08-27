@@ -15,6 +15,8 @@ import de.mossgrabers.controller.ableton.push.command.continuous.PushMasterVolum
 import de.mossgrabers.controller.ableton.push.command.pitchbend.TouchstripCommand;
 import de.mossgrabers.controller.ableton.push.command.trigger.AccentCommand;
 import de.mossgrabers.controller.ableton.push.command.trigger.ClipCommand;
+import de.mossgrabers.controller.ableton.push.command.trigger.ClipPlayCommand;
+import de.mossgrabers.controller.ableton.push.command.trigger.ClipRecordCommand;
 import de.mossgrabers.controller.ableton.push.command.trigger.ClipStopCommand;
 import de.mossgrabers.controller.ableton.push.command.trigger.DeviceCommand;
 import de.mossgrabers.controller.ableton.push.command.trigger.FixedLengthCommand;
@@ -555,15 +557,11 @@ public class PushControllerSetup extends AbstractControllerSetup<PushControlSurf
 
         final ITransport t = this.model.getTransport ();
 
-        this.addButton (ButtonID.PLAY, "Play", new PlayCommand<> (this.model, surface), PushControlSurface.PUSH_BUTTON_PLAY, t::isPlaying, PushColorManager.PUSH_BUTTON_STATE_PLAY_ON, PushColorManager.PUSH_BUTTON_STATE_PLAY_HI);
+        final ClipPlayCommand clipPlayCommand = new ClipPlayCommand (this.model, surface);
+        this.addButton (ButtonID.PLAY, "Play", clipPlayCommand, PushControlSurface.PUSH_BUTTON_PLAY, () -> clipPlayCommand.getLedState (), PushColorManager.PUSH_BUTTON_STATE_PLAY_ON, PushColorManager.PUSH_BUTTON_STATE_PLAY_HI);
 
-        this.addButton (ButtonID.RECORD, "Record", new RecordCommand<> (this.model, surface), PushControlSurface.PUSH_BUTTON_RECORD, () -> {
-
-            if (this.isRecordShifted (surface))
-                return t.isLauncherOverdub () ? 3 : 2;
-            return t.isRecording () ? 1 : 0;
-
-        }, PushColorManager.PUSH_BUTTON_STATE_REC_ON, PushColorManager.PUSH_BUTTON_STATE_REC_HI, PushColorManager.PUSH_BUTTON_STATE_OVR_ON, PushColorManager.PUSH_BUTTON_STATE_OVR_HI);
+        final ClipRecordCommand clipRecordCommand = new ClipRecordCommand (this.model, surface);
+        this.addButton (ButtonID.RECORD, "Record", clipRecordCommand, PushControlSurface.PUSH_BUTTON_RECORD, () -> clipRecordCommand.getLedState (), PushColorManager.PUSH_BUTTON_STATE_REC_ON, PushColorManager.PUSH_BUTTON_STATE_REC_HI);
 
         this.addButton (ButtonID.NEW, "New", new NewCommand<> (this.model, surface), isPush3 ? PushControlSurface.PUSH_3_BUTTON_NEW : PushControlSurface.PUSH_BUTTON_NEW);
         this.addButton (ButtonID.FIXED_LENGTH, "Fixed Length", new FixedLengthCommand (this.model, surface), PushControlSurface.PUSH_BUTTON_FIXED_LENGTH, () -> modeManager.isActive (Modes.FIXED));

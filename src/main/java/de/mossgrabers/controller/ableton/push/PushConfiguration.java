@@ -133,8 +133,8 @@ public class PushConfiguration extends AbstractConfiguration implements IGraphic
     public static final Integer     PREAMP_GAIN_2                              = Integer.valueOf (NEXT_SETTING_ID + 42);
     /** Audio Interface - Output configuration. */
     public static final Integer     AUDIO_OUTPUTS                              = Integer.valueOf (NEXT_SETTING_ID + 43);
-    /** Cursor keys in Play mode move clip/track selection instead of scrolling. */
-    public static final Integer     CURSOR_KEYS_PLAY_MODE                      = Integer.valueOf (NEXT_SETTING_ID + 44);
+    /** Master toggle for all Werbel Live customizations. */
+    public static final Integer     WERBEL_LIVE_MODE                           = Integer.valueOf (NEXT_SETTING_ID + 45);
 
     /** Use ribbon for pitch bend. */
     public static final int         RIBBON_MODE_PITCH                          = 0;
@@ -379,7 +379,7 @@ public class PushConfiguration extends AbstractConfiguration implements IGraphic
     private int                   cursorKeysTrackShiftedOption = 2;
     private int                   cursorKeysSceneOption        = 1;
     private int                   cursorKeysSceneShiftedOption = 0;
-    private boolean               cursorKeysPlayMode           = false;
+    private boolean               werbelLiveMode               = false;
     private boolean               isScenesClipView;
 
     /** What does the ribbon send? **/
@@ -653,13 +653,13 @@ public class PushConfiguration extends AbstractConfiguration implements IGraphic
 
 
     /**
-     * Returns true if cursor keys in Play mode should move clip/track selection.
+     * Returns true if Werbel Live mode is enabled.
      *
      * @return True if enabled
      */
-    public boolean isCursorKeysPlayMode ()
+    public boolean isWerbelLiveMode ()
     {
-        return this.cursorKeysPlayMode;
+        return this.werbelLiveMode;
     }
 
 
@@ -1797,9 +1797,9 @@ public class PushConfiguration extends AbstractConfiguration implements IGraphic
         final IEnumSetting cursorKeysSceneShiftedSetting = settingsUI.getEnumSetting ("Shifted Cursor Keys Scene Option", CATEGORY_WORKFLOW, CURSOR_KEYS_SCENE_OPTIONS, CURSOR_KEYS_SCENE_OPTIONS[0]);
         cursorKeysSceneShiftedSetting.addValueObserver (value -> this.cursorKeysSceneShiftedOption = lookupIndex (CURSOR_KEYS_SCENE_OPTIONS, value));
 
-        settingsUI.getEnumSetting ("Cursor Keys in Play Mode move clip selection", CATEGORY_WORKFLOW, ON_OFF_OPTIONS, ON_OFF_OPTIONS[0]).addValueObserver (value -> {
-            this.cursorKeysPlayMode = ON_OFF_OPTIONS[1].equals (value);
-            this.notifyObservers (CURSOR_KEYS_PLAY_MODE);
+        settingsUI.getEnumSetting ("Werbel Live Mode", "Werbel Live", ON_OFF_OPTIONS, ON_OFF_OPTIONS[0]).addValueObserver (value -> {
+            this.werbelLiveMode = ON_OFF_OPTIONS[1].equals (value);
+            this.notifyObservers (WERBEL_LIVE_MODE);
         });
     }
 

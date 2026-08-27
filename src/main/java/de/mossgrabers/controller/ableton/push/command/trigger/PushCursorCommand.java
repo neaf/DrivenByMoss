@@ -51,8 +51,8 @@ public class PushCursorCommand extends CursorCommand<PushControlSurface, PushCon
     @Override
     protected void scrollUp ()
     {
-        this.model.getHost ().println ("cursor UP: view=" + this.surface.getViewManager ().getActiveID () + " isNoteView=" + this.isNoteView () + " playMode=" + this.configuration.isCursorKeysPlayMode () + " | track=" + this.model.getCursorTrack ().getName () + " slot=" + this.model.getCursorTrack ().getSlotBank ().getSelectedItem ().map (s -> s.getIndex () + ":" + s.getName ()).orElse ("none") + " canBack=" + this.model.getCursorTrack ().getSlotBank ().canScrollBackwards () + " canFwd=" + this.model.getCursorTrack ().getSlotBank ().canScrollForwards ());
-        if (this.isNoteView () && this.configuration.isCursorKeysPlayMode ())
+        this.model.getHost ().println ("cursor UP: view=" + this.surface.getViewManager ().getActiveID () + " isNoteView=" + this.isNoteView () + " playMode=" + this.configuration.isWerbelLiveMode () + " | track=" + this.model.getCursorTrack ().getName () + " slot=" + this.model.getCursorTrack ().getSlotBank ().getSelectedItem ().map (s -> s.getIndex () + ":" + s.getName ()).orElse ("none") + " canBack=" + this.model.getCursorTrack ().getSlotBank ().canScrollBackwards () + " canFwd=" + this.model.getCursorTrack ().getSlotBank ().canScrollForwards ());
+        if (this.isNoteView () && this.configuration.isWerbelLiveMode ())
         {
             final java.util.Optional<de.mossgrabers.framework.daw.data.ISlot> selUp = this.model.getCursorTrack ().getSlotBank ().getSelectedItem ();
             final int upIdx = selUp.isPresent () ? selUp.get ().getIndex () : -1;
@@ -89,8 +89,8 @@ public class PushCursorCommand extends CursorCommand<PushControlSurface, PushCon
     @Override
     protected void scrollDown ()
     {
-        this.model.getHost ().println ("cursor DOWN: view=" + this.surface.getViewManager ().getActiveID () + " isNoteView=" + this.isNoteView () + " playMode=" + this.configuration.isCursorKeysPlayMode () + " | track=" + this.model.getCursorTrack ().getName () + " slot=" + this.model.getCursorTrack ().getSlotBank ().getSelectedItem ().map (s -> s.getIndex () + ":" + s.getName ()).orElse ("none") + " canBack=" + this.model.getCursorTrack ().getSlotBank ().canScrollBackwards () + " canFwd=" + this.model.getCursorTrack ().getSlotBank ().canScrollForwards ());
-        if (this.isNoteView () && this.configuration.isCursorKeysPlayMode ())
+        this.model.getHost ().println ("cursor DOWN: view=" + this.surface.getViewManager ().getActiveID () + " isNoteView=" + this.isNoteView () + " playMode=" + this.configuration.isWerbelLiveMode () + " | track=" + this.model.getCursorTrack ().getName () + " slot=" + this.model.getCursorTrack ().getSlotBank ().getSelectedItem ().map (s -> s.getIndex () + ":" + s.getName ()).orElse ("none") + " canBack=" + this.model.getCursorTrack ().getSlotBank ().canScrollBackwards () + " canFwd=" + this.model.getCursorTrack ().getSlotBank ().canScrollForwards ());
+        if (this.isNoteView () && this.configuration.isWerbelLiveMode ())
         {
             final java.util.Optional<de.mossgrabers.framework.daw.data.ISlot> selDown = this.model.getCursorTrack ().getSlotBank ().getSelectedItem ();
             final int downIdx = selDown.isPresent () ? selDown.get ().getIndex () : -1;
@@ -125,8 +125,8 @@ public class PushCursorCommand extends CursorCommand<PushControlSurface, PushCon
     @Override
     protected void scrollLeft ()
     {
-        this.model.getHost ().println ("cursor LEFT: view=" + this.surface.getViewManager ().getActiveID () + " isNoteView=" + this.isNoteView () + " playMode=" + this.configuration.isCursorKeysPlayMode () + " | track=" + this.model.getCursorTrack ().getName () + " trackIdx=" + this.model.getCursorTrack ().getIndex () + " canBack=" + this.model.getCurrentTrackBank ().canScrollBackwards () + " canFwd=" + this.model.getCurrentTrackBank ().canScrollForwards ());
-        if (this.isNoteView () && this.configuration.isCursorKeysPlayMode ())
+        this.model.getHost ().println ("cursor LEFT: view=" + this.surface.getViewManager ().getActiveID () + " isNoteView=" + this.isNoteView () + " playMode=" + this.configuration.isWerbelLiveMode () + " | track=" + this.model.getCursorTrack ().getName () + " trackIdx=" + this.model.getCursorTrack ().getIndex () + " canBack=" + this.model.getCurrentTrackBank ().canScrollBackwards () + " canFwd=" + this.model.getCurrentTrackBank ().canScrollForwards ());
+        if (this.isNoteView () && this.configuration.isWerbelLiveMode ())
         {
             final de.mossgrabers.framework.daw.data.bank.ITrackBank tb = this.model.getCurrentTrackBank ();
             final java.util.Optional<de.mossgrabers.framework.daw.data.ITrack> selLeft = tb.getSelectedItem ();
@@ -156,8 +156,8 @@ public class PushCursorCommand extends CursorCommand<PushControlSurface, PushCon
     @Override
     protected void scrollRight ()
     {
-        this.model.getHost ().println ("cursor RIGHT: view=" + this.surface.getViewManager ().getActiveID () + " isNoteView=" + this.isNoteView () + " playMode=" + this.configuration.isCursorKeysPlayMode () + " | track=" + this.model.getCursorTrack ().getName () + " trackIdx=" + this.model.getCursorTrack ().getIndex () + " canBack=" + this.model.getCurrentTrackBank ().canScrollBackwards () + " canFwd=" + this.model.getCurrentTrackBank ().canScrollForwards ());
-        if (this.isNoteView () && this.configuration.isCursorKeysPlayMode ())
+        this.model.getHost ().println ("cursor RIGHT: view=" + this.surface.getViewManager ().getActiveID () + " isNoteView=" + this.isNoteView () + " playMode=" + this.configuration.isWerbelLiveMode () + " | track=" + this.model.getCursorTrack ().getName () + " trackIdx=" + this.model.getCursorTrack ().getIndex () + " canBack=" + this.model.getCurrentTrackBank ().canScrollBackwards () + " canFwd=" + this.model.getCurrentTrackBank ().canScrollForwards ());
+        if (this.isNoteView () && this.configuration.isWerbelLiveMode ())
         {
             final de.mossgrabers.framework.daw.data.bank.ITrackBank tb2 = this.model.getCurrentTrackBank ();
             final java.util.Optional<de.mossgrabers.framework.daw.data.ITrack> selRight = tb2.getSelectedItem ();
@@ -197,7 +197,7 @@ public class PushCursorCommand extends CursorCommand<PushControlSurface, PushCon
     @Override
     protected void updateArrowStates ()
     {
-        if (this.isNoteView () && this.configuration.isCursorKeysPlayMode ())
+        if (this.isNoteView () && this.configuration.isWerbelLiveMode ())
         {
             this.scrollStates.setCanScrollUp (this.model.getCursorTrack ().getSlotBank ().canScrollBackwards ());
             this.scrollStates.setCanScrollDown (this.model.getCursorTrack ().getSlotBank ().canScrollForwards ());
